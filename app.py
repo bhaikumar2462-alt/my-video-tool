@@ -8,11 +8,11 @@ if st.button("डाउनलोड करें"):
     if url:
         st.write("डाउनलोडिंग शुरू हो रही है, कृपया प्रतीक्षा करें...")
         
-        # 'best' सेटिंग का उपयोग किया है ताकि ffmpeg की ज़रूरत न पड़े
         ydl_opts = {
             'format': 'best',
             'outtmpl': 'downloaded_video.mp4',
             'noplaylist': True,
+            'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         }
         
         try:
@@ -20,7 +20,4 @@ if st.button("डाउनलोड करें"):
                 ydl.download([url])
             st.success("वीडियो सफलतापूर्वक डाउनलोड हो गया!")
             st.video("downloaded_video.mp4")
-        except Exception as e:
-            st.error(f"डाउनलोडिंग में समस्या आई: {e}")
-    else:
-        st.warning("कृपया पहले एक वैध लिंक डालें।")
+        except Exception…
