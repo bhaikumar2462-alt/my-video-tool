@@ -1,29 +1,26 @@
 import streamlit as st
 import yt_dlp
-import os
 
 st.title("वायरल क्लिप्स मेकर")
-import streamlit as st
-import yt_dlp
+url = st.text_input("वीडियो का लिंक यहाँ पेस्ट करें:")
 
-st.title("वायरल क्लिप्स मेकर")
-url = st.text_input("वीडियो का लिंक डालें:")
-
-if st.button("डाउनलोड और प्रोसेस करें"):
+if st.button("डाउनलोड करें"):
     if url:
-        st.write("डाउनलोडिंग शुरू हो रही है...")
-        # नई बेहतर सेटिंग्स
+        st.write("डाउनलोडिंग शुरू हो रही है, कृपया प्रतीक्षा करें...")
+        
+        # 'best' सेटिंग का उपयोग किया है ताकि ffmpeg की ज़रूरत न पड़े
         ydl_opts = {
-            'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
+            'format': 'best',
             'outtmpl': 'downloaded_video.mp4',
             'noplaylist': True,
-            'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
         }
+        
         try:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([url])
-            st.success("वीडियो डाउनलोड हो गया! अब क्लिप्स बन रहे हैं...")
+            st.success("वीडियो सफलतापूर्वक डाउनलोड हो गया!")
+            st.video("downloaded_video.mp4")
         except Exception as e:
             st.error(f"डाउनलोडिंग में समस्या आई: {e}")
     else:
-        st.error("कृपया पहले लिंक डालें!")
+        st.warning("कृपया पहले एक वैध लिंक डालें।")
