@@ -1,7 +1,16 @@
-# वीडियो डाउनलोड सेटिंग्स 
-ydl_opts = { 
-            'format': 'best',
-            'outtmpl': 'my_video.mp4',
-            'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-                # re-deploy app
-        }
+import streamlit as st
+
+st.title("मेरा वीडियो डाउनलोड टूल")
+st.write("यहाँ अपना लिंक डालें और वीडियो डाउनलोड करें!")
+
+ydl_opts = {
+    'format': 'best',
+    'outtmpl': 'my_video.mp4',
+}
+
+# लिंक के लिए इनपुट बॉक्स
+url = st.text_input("वीडियो का लिंक यहाँ पेस्ट करें:")
+
+if st.button("डाउनलोड करें"):
+    st.write("डाउनलोडिंग शुरू हो रही है...")
+    # यहाँ डाउनलोडिंग का बाकी कोड आएगा
