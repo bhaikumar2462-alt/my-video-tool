@@ -1,30 +1,6 @@
-import streamlit as st
-import yt_dlp
-import os
-
-st.set_page_config(page_title="मेरा वीडियो टूल")
-st.title("YouTube से क्लिप मेकर")
-
-url = st.text_input("YouTube वीडियो का लिंक यहाँ डालें:")
-
-if st.button("क्लिप बनाएं"):
-    if url:
-        st.write("वीडियो प्रोसेस हो रही है, कृपया प्रतीक्षा करें...")
-        
-        # वीडियो डाउनलोड सेटिंग्स
+# वीडियो डाउनलोड सेटिंग्स
         ydl_opts = {
             'format': 'best',
             'outtmpl': 'my_video.mp4',
+            'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
         }
-        
-        try:
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([url])
-            
-            st.success("वीडियो डाउनलोड हो गई!")
-            st.video("my_video.mp4")
-            
-        except Exception as e:
-            st.error(f"कुछ एरर आया: {e}")
-    else:
-        st.warning("कृपया पहले लिंक डालें।")   
