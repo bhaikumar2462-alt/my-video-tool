@@ -1,3 +1,4 @@
+--upgrade yt-dlp 
 streamlit
 yt-dlp
 moviepy
